@@ -19,8 +19,7 @@ public class Employee {
 		worklocation = "";
 	}
 
-	public Employee(String fn, String ln, int ID, double sal, String dep,
-			int yow, String loc) {
+	public Employee(String fn, String ln, int ID, double sal, String dep, int yow, String loc) {
 		firstname = fn;
 		lastname = ln;
 		empID = ID;
