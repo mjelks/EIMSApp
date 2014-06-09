@@ -31,7 +31,8 @@ public class EmployeeDatabase {
 	String delimeters = "[~]";
 
 	try {
-	  br = new BufferedReader(new FileReader("Employees.txt"));
+	  InputStreamReader reader = new InputStreamReader(EmployeeDatabase.class.getResourceAsStream("Employees.txt"), "UTF-8");
+	  br = new BufferedReader(reader);
 
 	  int i = 0;
 	  String line = "";
