@@ -20,7 +20,7 @@ public class AppFrame extends JFrame {
   // Frame size might be defined here
   // private final int WIDTH = 200 ;
   // private final int HEIGHT = 200 ;
-  public AppFrame(JPanel centerPanel) {
+  public AppFrame(JPanel panelContent) {
 	// setting frame attributes ("look and feel")
 	setTitle(this.title);
 
@@ -36,7 +36,7 @@ public class AppFrame extends JFrame {
 	// creating panels
 
 	JPanel northPanel = new JPanel();
-	//JPanel centerPanel = new JPanel();
+	JPanel centerPanel = new JPanel();
 	JPanel southPanel = new JPanel();
 
         // add panels to the frame based on Frame's layout manager
@@ -46,7 +46,7 @@ public class AppFrame extends JFrame {
 
     //  adding UI components to the panels
 	northPanel.add(this.label1);
-	//centerPanel.add(centerPanel);
+	centerPanel.add(panelContent);
 	southPanel.add(this.label3);
 
 	setResizable(false);

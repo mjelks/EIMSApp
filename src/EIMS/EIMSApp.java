@@ -33,10 +33,11 @@ public class EIMSApp extends JFrame
   }
   
   public JPanel userPass() {
+    int column_width = 15;
 	JPanel userPanel = new JPanel(new BorderLayout());
     JLabel userLabel = new JLabel("Username: ");
     userLabel.setDisplayedMnemonic(KeyEvent.VK_U);
-    JTextField userTextField = new JTextField();
+    JTextField userTextField = new JTextField(null, null, column_width);
     userLabel.setLabelFor(userTextField);
     userPanel.add(userLabel, BorderLayout.WEST);
     userPanel.add(userTextField, BorderLayout.CENTER);
@@ -44,7 +45,7 @@ public class EIMSApp extends JFrame
     JPanel passPanel = new JPanel(new BorderLayout());
     JLabel passLabel = new JLabel("Password: ");
     passLabel.setDisplayedMnemonic(KeyEvent.VK_P);
-    JPasswordField passTextField = new JPasswordField();
+    JPasswordField passTextField = new JPasswordField(null, null, column_width);
     passLabel.setLabelFor(passTextField);
     passPanel.add(passLabel, BorderLayout.WEST);
     passPanel.add(passTextField, BorderLayout.CENTER);
