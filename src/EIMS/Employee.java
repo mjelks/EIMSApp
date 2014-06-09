@@ -1,6 +1,8 @@
 package EIMS;
 
-public class Employee implements Comparable<Employee> {		// the "implements comparable" part allows them to be sorted. found this on the internet.
+// the "implements comparable" part allows them to be sorted. 
+// (found this on the internet.)
+public class Employee implements Comparable<Employee> {		
 
   public String firstname;
   public String lastname;
@@ -20,8 +22,14 @@ public class Employee implements Comparable<Employee> {		// the "implements comp
 	worklocation = "";
   }
 
-  public Employee(String fn, String ln, int ID,
-		  double sal, String dep, int yow, String loc) {
+  public Employee(
+		  String fn, 
+		  String ln, 
+		  int ID, 
+		  double sal, 
+		  String dep, 
+		  int yow, String loc
+  ) {
 	firstname = fn;
 	lastname = ln;
 	empID = ID;

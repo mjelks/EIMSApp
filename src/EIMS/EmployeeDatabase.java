@@ -14,8 +14,9 @@ public class EmployeeDatabase {
 //	empDB.buildDB();
 //	empDB.pension(5);
 //  }
-
-  public void pension(int numberofyears) {		//determines which employees worked for more than 5 years and returns their names.
+  
+  //determines which employees worked for more than 5 years and returns their names.
+  public void pension(int numberofyears) {		
 
 	for (int i = 0; i < CURRENT_EMPLOYEE_COUNT; i++) {
 	  if (database[i].getPension() >= numberofyears) {
