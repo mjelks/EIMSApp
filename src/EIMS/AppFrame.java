@@ -1,88 +1,68 @@
-package EIMS;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+package EIMS;
+//Java Core Package  
+import javax.swing.*;  
+//Java Extension Package  
+import java.awt.*; 
 
 /**
  *
  * @author mjelks
  */
 public class AppFrame extends JFrame {
-  private JLabel label1 = new JLabel("Foothill College");
-  private JLabel label2 = new JLabel("Spring 2014");
-  private JLabel label3 = new JLabel("Programming in Java");
-  private String title = "EIMSApp";
-  public static JPanel centerPanel = new JPanel();
+ //Initializing JPanels  
+    private JPanel mainPanel;
+    public static JPanel subPanel;
   
-//  public String AppFrame() {
-//	return "Please pass a Panel to the constructor";
-//  }
-  // Frame size might be defined here
-  // private final int WIDTH = 200 ;
-  // private final int HEIGHT = 200 ;
-  public AppFrame() {
-	// setting frame attributes ("look and feel")
-	setTitle(this.title);
-
-	Toolkit kit = Toolkit.getDefaultToolkit();
-	Dimension dim = kit.getScreenSize();
-	int screenWidth = dim.width;
-	int screenHeight = dim.height;
-
-	setSize(screenWidth / 2, screenHeight / 2);
-
-	// positioning the frame in the center of the screen
-	setLocationRelativeTo(null);
-	// creating panels
-
-	JPanel northPanel = new JPanel();
-    JPanel defaultCenter = new JPanel();
-    //defaultCenter.setLayout(new GridLayout(1,2)); 
-    defaultCenter.setBorder(BorderFactory.createTitledBorder("Main Panel"));
-    
-    centerPanel.setBorder(BorderFactory.createTitledBorder("swap Panel"));
-    defaultCenter.add(centerPanel);
-	JPanel southPanel = new JPanel();
-
-        // add panels to the frame based on Frame's layout manager
-	add(northPanel, BorderLayout.NORTH);
-	add(defaultCenter, BorderLayout.CENTER);
-	add(southPanel, BorderLayout.SOUTH);
-
-    //  adding UI components to the panels
-	northPanel.add(this.label1);
-//	centerPanel.add(defaultCenter);
-    //this.setCenterPanel(panelContent);
-	southPanel.add(this.label3);
-    
-    Container pane = getContentPane();  
-    setContentPane(pane);
-    pane.add(defaultCenter);
-	setResizable(false);
-
-	// adding GUI components: TBD
-	// setting frame behavior
-	//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	addWindowListener(new WindowAdapter() {
-	  public void windowClosing(WindowEvent e) {
-		System.exit(0);
-	  }
-	}
-	);
-  }
+    //Setting up GUI  
+    public AppFrame(){  
+ 
+        //Set Size of the Window (WIDTH, HEIGHT)  
+        setSize(600,1000);  
+  
+        //Exit Property of the Window  
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+          
+        //Constructing Main JPanel with GridLayout of 1 row and 2 column  
+        mainPanel = new JPanel();  
+        mainPanel.setBorder(BorderFactory.createTitledBorder("Main Panel"));  
+        mainPanel.setLayout(new GridLayout(1,2));  
+          
+        //Constructing JPanel 1 and 2 with GridLayout of 1 row and 1 column  
+        subPanel = new JPanel();  
+        subPanel.setBorder(BorderFactory.createTitledBorder("Sub Panel 1"));  
+        subPanel.setLayout(new GridLayout(1,1));  
+          
+        //Adding JPanel 3 to JPanel 1 which means JPanel 3 is inside JPanel 1  
+        //subPanel1.add(subPanel3);  
+          
+        //Adding JPanel 1 and 2 to main JPanel  
+        mainPanel.add(subPanel);  
+        
+        //Setting up the container ready for the components to be added.  
+        Container pane = getContentPane();  
+        setContentPane(pane);  
+          
+        //Adding the main JPanel to the container  
+        pane.add(mainPanel);  
+  
+        /**Set all the Components Visible. 
+         * If it is set to "false", the components in the container will not be visible. 
+         */  
+        setVisible(true);  
+        setResizable(false);
+    }
   
   public void swapCenterPanel(JFrame frame, JPanel oldPanel, JPanel newPanel) {
+    newPanel.setBorder(BorderFactory.createTitledBorder("Sub Panel 1"));  
+//    newPanel.setLayout(new GridLayout(1,1));
     frame.getContentPane().remove(oldPanel);
-    frame.getContentPane().add(newPanel, BorderLayout.CENTER); 
+    frame.getContentPane().add(newPanel); 
     frame.validate();
   }
-  
-  public void setCenterPanel(JPanel panelContent) {
-    //centerPanel.add(panelContent);
-    //centerPanel.remove(panelContent);
-    //centerPanel.add(panelContent);
-    //this.repaint();
-    System.out.println("KSJFK");
-  }
-} // end of class AppFrame
+}
