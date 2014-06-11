@@ -75,7 +75,7 @@ public class EmployeeDatabase {
 
   public void list() {
 	for (int i = 0; i < CURRENT_EMPLOYEE_COUNT; i++) {
-	  System.out.println(database[i].getFirstname() + " is eligible for pension");
+	  System.out.println(database[i].getFirstname() + " " + database[i].getLastname() + " " + database[i].getID + " " + database[i].getDepartment + " " + database[i].getSalary + " " + database[i].getPension +  " " + database[i].getLocation);
 	}
   }
 }
