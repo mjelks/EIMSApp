@@ -9,18 +9,14 @@ public class EmployeeDatabase {
   private int CURRENT_EMPLOYEE_COUNT;
   private Employee[] database = new Employee[MAX_EMPLOYEE_COUNT];
 
-//  public static void main(String[] args) {
-//	EmployeeDatabase empDB = new EmployeeDatabase();
-//	empDB.buildDB();
-//	empDB.pension(5);
-//  }
-  
-  //determines which employees worked for more than 5 years and returns their names.
+  //determines which employees worked for more than 
+  // 5 years and returns their names.
   public void pension(int numberofyears) {		
 
 	for (int i = 0; i < CURRENT_EMPLOYEE_COUNT; i++) {
 	  if (database[i].getPension() >= numberofyears) {
-		System.out.println(database[i].getFirstname() + " is eligible for pension");
+		System.out.println(database[i].getFirstname() + 
+                " is eligible for pension");
 	  }
 	}
   }
@@ -31,7 +27,8 @@ public class EmployeeDatabase {
 	String delimeters = "[~]";
 
 	try {
-	  InputStreamReader reader = new InputStreamReader(EmployeeDatabase.class.getResourceAsStream("Employees.txt"), "UTF-8");
+	  InputStreamReader reader = new InputStreamReader(
+        EmployeeDatabase.class.getResourceAsStream("Employees.txt"), "UTF-8");
 	  br = new BufferedReader(reader);
 
 	  int i = 0;
@@ -79,7 +76,7 @@ public class EmployeeDatabase {
 
   public void list() {
 	for (int i = 0; i < CURRENT_EMPLOYEE_COUNT; i++) {
-	  //System.out.println(database[i].getFirstname() + " " + database[i].getLastname() + " " + database[i].getID + " " + database[i].getDepartment + " " + database[i].getSalary + " " + database[i].getPension +  " " + database[i].getLocation);
+	  // generic output
 	}
   }
 }

@@ -8,18 +8,14 @@ import java.util.List;
 
 public class SysAdmin {
   public int numberOfAccts = 0;
-  public String[] accountList;			// each array element will be a login and password separated by a space
-  public String[] loginsOnly;				// each element will be a string of the login only
-  public String[] pwordsOnly;				// each element will be a string of the password only
+  // each array element will be a login and password separated by a space
+  public String[] accountList;			
+  // each element will be a string of the login only
+  public String[] loginsOnly;				
+  // each element will be a string of the password only
+  public String[] pwordsOnly;				
   public Account account;
   
-//  public SysAdmin(Account account) {
-//    try {
-//      this.login(account.getUsername(), account.getPassword());
-//    } catch(IOException e) {
-//	  e.printStackTrace();
-//	}
-//  }
 
   public boolean login(String user, String pword) throws IOException {
 	boolean approved = false;
@@ -69,7 +65,8 @@ public class SysAdmin {
 		  loginsOnly[p] = loginsOnly[r];
 		  loginsOnly[r] = tmpLogin;
 		  //System.out.println("tmpLogin set to "+ tmpLogin);
-		  tmpPword = pwordsOnly[p];								// changing order of passwords only array to match loginsOnly order
+          // changing order of passwords only array to match loginsOnly order
+		  tmpPword = pwordsOnly[p];								
 		  pwordsOnly[p] = pwordsOnly[r];
 		  pwordsOnly[r] = tmpPword;
 		}//else{System.out.println("tmpLogin not changed");}
@@ -77,42 +74,47 @@ public class SysAdmin {
 	  //System.out.println("sorted "+ loginsOnly[p]);	
 	}
   }
-
-  public void getLoginList() throws IOException {				// this method adds each line from the accts.txt login list to an array
+  
+  // this method adds each line from the accts.txt login list to an array
+  public void getLoginList() throws IOException {				
 	BufferedReader br = null;
 	String delimeter = "[ ]";		//
-
-	numberOfAccts = lineNumbers();							// method call to find out how many accounts are in the txt file
+    
+    // method call to find out how many accounts are in the txt file
+	numberOfAccts = lineNumbers();							
 	accountList = new String[numberOfAccts];
 	//System.out.println("number of logins is "+numberOfAccts);
 	loginsOnly = new String[numberOfAccts];
 	pwordsOnly = new String[numberOfAccts];
 
 	try {
-      InputStreamReader reader = new InputStreamReader(EmployeeDatabase.class.getResourceAsStream("accts.txt"), "UTF-8");
+      InputStreamReader reader = new InputStreamReader(
+              EmployeeDatabase.class.getResourceAsStream("accts.txt"), "UTF-8");
 	  br = new BufferedReader(reader);
-//	  br = new BufferedReader(new FileReader("C:/John2/accts.txt"));
 	  String line = "";
 
 	  int i = 0;
 	  int n = 0;
-	  //System.out.println("\nBelow is each line of the original login accts.txt file:"); //
+	  
 	  while ((line = br.readLine()) != null) {
-		accountList[i] = line;							// adding account/password pair (in single strings) to array
-		// /*
-		String[] fields = line.split(delimeter);		// this splits each file line as it's downloaded
+        // adding account/password pair (in single strings) to array
+		accountList[i] = line;							
+
+        // this splits each file line as it's downloaded
+		String[] fields = line.split(delimeter);		
 		for (String field : fields) {
 		  //System.out.print(field + " ");
 		  if (n % 2 == 0) {
-			loginsOnly[i] = field;					// adding only logins to array
+            // adding only logins to array
+			loginsOnly[i] = field;					
 			//System.out.println("login: "+ field);
 		  } else {
-			pwordsOnly[i] = field;					// adding only passwords to array
-			//System.out.println("pword: "+ field);
+            // adding only passwords to array
+			pwordsOnly[i] = field;					
+		
 		  }
 		  n++;
 		}
-		//System.out.println();	// */
 		i++;
 	  }
 	  br.close();
@@ -125,11 +127,13 @@ public class SysAdmin {
 	  }
 	}
   }
-
-  public int lineNumbers() throws IOException {				// figures out how many accounts are in the txt file
+  
+  // figures out how many accounts are in the txt file
+  public int lineNumbers() throws IOException {				
 	BufferedReader br = null;
 	try {
-	  InputStreamReader reader = new InputStreamReader(EmployeeDatabase.class.getResourceAsStream("accts.txt"), "UTF-8");
+	  InputStreamReader reader = new InputStreamReader(
+              EmployeeDatabase.class.getResourceAsStream("accts.txt"), "UTF-8");
 	  br = new BufferedReader(reader);
 			//String line = "";
 

@@ -83,8 +83,9 @@ public class Employee implements Comparable<Employee> {
 
   
   
-
-  public int compareTo(Employee compareEmp) {		// allows objects to be sorted according to a specific field (in this case, ID)
+  // allows objects to be sorted according to a specific field 
+  // (in this case, ID)
+  public int compareTo(Employee compareEmp) {		
 
 	int empID = this.empID;
 	int compareEmpID = compareEmp.empID;

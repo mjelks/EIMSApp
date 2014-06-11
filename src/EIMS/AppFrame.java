@@ -52,7 +52,8 @@ public class AppFrame extends JFrame {
         pane.add(mainPanel);  
   
         /**Set all the Components Visible. 
-         * If it is set to "false", the components in the container will not be visible. 
+         * If it is set to "false", the components 
+         * in the container will not be visible. 
          */  
         setVisible(true);  
         setResizable(false);
