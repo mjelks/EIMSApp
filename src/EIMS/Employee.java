@@ -60,6 +60,10 @@ public class Employee implements Comparable<Employee> {
   public double getSalary() {
 	return salary;
   }
+  
+  public int getID() {
+	return empID;
+  }
 
   public String getLocation() {
 	return workLocation;
