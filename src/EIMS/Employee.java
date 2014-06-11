@@ -9,8 +9,10 @@ public class Employee implements Comparable<Employee> {
   public int empID;
   public double salary;
   public String department;
-  public int yearsofwork;
-  public String worklocation;
+  public int yearsOfWork;
+  public String workLocation;
+  
+  private static final int DEFAULT_PENSION = 5;
 
   public Employee() {
 	firstname = "";
@@ -18,8 +20,8 @@ public class Employee implements Comparable<Employee> {
 	empID = 0;
 	salary = 0.0;
 	department = "";
-	yearsofwork = 0;
-	worklocation = "";
+	yearsOfWork = 0;
+	workLocation = "";
   }
 
   public Employee(
@@ -35,12 +37,12 @@ public class Employee implements Comparable<Employee> {
 	empID = ID;
 	salary = sal;
 	department = dep;
-	yearsofwork = yow;
-	worklocation = loc;
+	yearsOfWork = yow;
+	workLocation = loc;
   }
 
   public int getPension() {	// can also be used as getYearsOfWork.
-	return yearsofwork;
+	return yearsOfWork;
   }
 
   public String getFirstname() {
@@ -60,8 +62,23 @@ public class Employee implements Comparable<Employee> {
   }
 
   public String getLocation() {
-	return worklocation;
+	return workLocation;
   }
+  
+  public int getEmpId() {
+    return empID;
+  }
+  
+  public boolean isPensioner() {
+    boolean pensioner = false;
+    if (this.getPension() >= DEFAULT_PENSION) {
+      pensioner = true;
+    }
+    return pensioner;
+  }
+
+  
+  
 
   public int compareTo(Employee compareEmp) {		// allows objects to be sorted according to a specific field (in this case, ID)
 

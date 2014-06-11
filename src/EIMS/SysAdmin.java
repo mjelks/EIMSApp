@@ -3,6 +3,7 @@ package EIMS;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class SysAdmin {
@@ -10,6 +11,15 @@ public class SysAdmin {
   public String[] accountList;			// each array element will be a login and password separated by a space
   public String[] loginsOnly;				// each element will be a string of the login only
   public String[] pwordsOnly;				// each element will be a string of the password only
+  public Account account;
+  
+//  public SysAdmin(Account account) {
+//    try {
+//      this.login(account.getUsername(), account.getPassword());
+//    } catch(IOException e) {
+//	  e.printStackTrace();
+//	}
+//  }
 
   public boolean login(String user, String pword) throws IOException {
 	boolean approved = false;
@@ -79,7 +89,9 @@ public class SysAdmin {
 	pwordsOnly = new String[numberOfAccts];
 
 	try {
-	  br = new BufferedReader(new FileReader("C:/John2/accts.txt"));
+      InputStreamReader reader = new InputStreamReader(EmployeeDatabase.class.getResourceAsStream("accts.txt"), "UTF-8");
+	  br = new BufferedReader(reader);
+//	  br = new BufferedReader(new FileReader("C:/John2/accts.txt"));
 	  String line = "";
 
 	  int i = 0;
@@ -117,7 +129,8 @@ public class SysAdmin {
   public int lineNumbers() throws IOException {				// figures out how many accounts are in the txt file
 	BufferedReader br = null;
 	try {
-	  br = new BufferedReader(new FileReader("C:/John2/accts.txt"));
+	  InputStreamReader reader = new InputStreamReader(EmployeeDatabase.class.getResourceAsStream("accts.txt"), "UTF-8");
+	  br = new BufferedReader(reader);
 			//String line = "";
 
 	  while ((br.readLine()) != null) {

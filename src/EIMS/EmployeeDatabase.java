@@ -24,7 +24,7 @@ public class EmployeeDatabase {
 	  }
 	}
   }
-
+  
   public void buildDB() {
 
 	BufferedReader br = null;
@@ -67,6 +67,10 @@ public class EmployeeDatabase {
 	  }
 	}
 	sort();
+  }
+  
+  public Employee[] getDatabase() {
+    return this.database;
   }
 
   public void sort() {
