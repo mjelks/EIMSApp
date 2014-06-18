@@ -15,27 +15,37 @@ import java.awt.*;
  * @author mjelks
  */
 public class AppFrame extends JFrame {
- //Initializing JPanels  
+    //Initializing JPanels  
     private JPanel mainPanel;
     public static JPanel subPanel;
-  
+    private String title = "EIMSApp";
+    
     //Setting up GUI  
     public AppFrame(){  
- 
-        //Set Size of the Window (WIDTH, HEIGHT)  
-        setSize(600,1000);  
-  
         //Exit Property of the Window  
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-          
+        
+        setTitle(this.title);
+        
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension dim = kit.getScreenSize();
+        int screenWidth = dim.width;
+        int screenHeight = dim.height;
+        
+        //Set Size of the Window (WIDTH, HEIGHT)  
+        setSize(500,740);  
+        //setSize(screenWidth /2 , screenHeight / 2);
+        setLocationRelativeTo(null);
+  
+        
         //Constructing Main JPanel with GridLayout of 1 row and 2 column  
         mainPanel = new JPanel();  
-        mainPanel.setBorder(BorderFactory.createTitledBorder("Main Panel"));  
+//        mainPanel.setBorder(BorderFactory.createTitledBorder("Main Panel"));  
         mainPanel.setLayout(new GridLayout(1,2));  
           
         //Constructing JPanel 1 and 2 with GridLayout of 1 row and 1 column  
         subPanel = new JPanel();  
-        subPanel.setBorder(BorderFactory.createTitledBorder("Sub Panel 1"));  
+//        subPanel.setBorder(BorderFactory.createTitledBorder("Sub Panel 1"));  
         subPanel.setLayout(new GridLayout(1,1));  
           
         //Adding JPanel 3 to JPanel 1 which means JPanel 3 is inside JPanel 1  
@@ -60,7 +70,7 @@ public class AppFrame extends JFrame {
     }
   
   public void swapCenterPanel(JFrame frame, JPanel oldPanel, JPanel newPanel) {
-    newPanel.setBorder(BorderFactory.createTitledBorder("Sub Panel 1"));  
+//    newPanel.setBorder(BorderFactory.createTitledBorder("Sub Panel 1"));  
 //    newPanel.setLayout(new GridLayout(1,1));
     frame.getContentPane().remove(oldPanel);
     frame.getContentPane().add(newPanel); 

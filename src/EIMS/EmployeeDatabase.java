@@ -24,7 +24,7 @@ public class EmployeeDatabase {
   public void buildDB() {
 
 	BufferedReader br = null;
-	String delimeters = "[~]";
+	String delimeters = "[~;]";
 
 	try {
 	  InputStreamReader reader = new InputStreamReader(

@@ -1,0 +1,4 @@
+John~Smith~26712~65432.36~IT~4~San Jose
+Alden~Pearce~12345~70122.75~PR~2~Santa Clara
+Alex~Walls~15623~74000.00~Marketing~6~Cupertino
+Macy~Sparks~51340~80120.50~Accounting~5~San Jose

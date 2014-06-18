@@ -87,6 +87,10 @@ public class EIMSApp extends JFrame {
           System.out.println(loginCheck);
           if (loginCheck == true) {
             frame.swapCenterPanel(frame, frame.subPanel, listPanel(false));
+          } else {
+            // clear the text fields and flash warning
+            userTextField.setText("");
+            passTextField.setText("");
           }
         } catch (IOException ef) {
           ef.printStackTrace();
