@@ -88,4 +88,76 @@ public class EmployeeDatabase {
 	  // generic output
 	}
   }
+  
+  private static int getDeletedID(){
+		int buffer;
+		buffer = Integer.parseInt( (String) JOptionPane.showInputDialog
+				(null,"Employee ID: ","Delete an employee", JOptionPane.INFORMATION_MESSAGE,null,null,null));
+		return buffer;		
+	}
+	
+	private int[] getIDs(){
+		int [] empIDs;
+		empIDs = new int[CURRENT_EMPLOYEE_COUNT];
+		
+		for(int io=0; io<empIDs.length; io++){
+			empIDs[io] = database[io].getID();
+		}
+		return empIDs;
+	}
+	
+	public boolean delete(int employeeID){
+		int delIndex = binarySearch(getIDs() , 0, CURRENT_EMPLOYEE_COUNT, employeeID);
+		boolean deletesuccess = false;				
+		if(delIndex != -1){ // if database is empty, or if the employee ID is invalid,
+							//  will not enter for loop.		
+			for(int i = delIndex; i < CURRENT_EMPLOYEE_COUNT-1; i++){
+				database[i] = database[i+1];
+			}
+			CURRENT_EMPLOYEE_COUNT--;
+			System.out.println(CURRENT_EMPLOYEE_COUNT);
+			list();
+			deletesuccess = true;
+			
+		}
+		return deletesuccess;
+	}
+	
+	public int binarySearch(int[] sorted, int first, int upto, int key) {
+	    
+	    while (first < upto) {
+	        int mid = (first + upto) / 2;  // Compute mid point.
+	        if (key < sorted[mid]) {
+	            upto = mid;     // repeat search in bottom half.
+	        } else if (key > sorted[mid]) {
+	            first = mid + 1;  // Repeat search in top half.
+	        } else {
+	            return mid;     // Found it. return position
+	        }
+	    }
+	    return -1;    // Failed to find key
+	}
+	
+	public boolean addEmployee(String firstname, String lastname, int empID, double salary, String department, int yearsofwork, String worklocation){
+		if(CURRENT_EMPLOYEE_COUNT == MAX_EMPLOYEE_COUNT){
+			return false;
+		}
+		if(query(empID) != null){		// returns false if employee ID already exists.
+			return false;
+		}
+		database[CURRENT_EMPLOYEE_COUNT] = new Employee(firstname, lastname, empID, salary, department, yearsofwork, worklocation);
+		CURRENT_EMPLOYEE_COUNT++;
+		sort();
+		return true;
+		
+	}
+	
+	public Employee query (int employeeID){
+		int index =  binarySearch(getIDs() , 0, CURRENT_EMPLOYEE_COUNT-1, employeeID);
+		if(index == -1){	// if there is no array, or if the entered ID is invalid, it will return null.
+			return null;
+		}
+		
+		return database[index];
+	}
 }
