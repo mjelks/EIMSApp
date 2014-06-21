@@ -71,7 +71,16 @@ public class EmployeeDatabase {
   }
 
   public void sort() {
-	Arrays.sort(database, 0, CURRENT_EMPLOYEE_COUNT - 1);
+	  for (int a = 1; a < CURRENT_EMPLOYEE_COUNT; a++) {
+	        for (int b = 0; b < CURRENT_EMPLOYEE_COUNT - a; b++) {
+	            if (((database[b].getID()) > (database[b + 1].getID()))) {
+	                // swap movies[b] with movies[b+1]
+	                Employee temp = database[b];
+	                database[b] = database[b + 1];
+	                database[b + 1] = temp;
+	            }
+	        }
+		}
   }
 
   public void list() {
