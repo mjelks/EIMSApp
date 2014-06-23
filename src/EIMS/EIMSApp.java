@@ -10,7 +10,7 @@ public class EIMSApp extends JFrame {
   private SysAdmin sysAdmin;
   private EmployeeDatabase db;
   private Account account;
-  public AppFrame frame;
+  public AppFrame2 frame;
 
   public static void main(String[] args) {
     // show initial prompt
@@ -27,80 +27,11 @@ public class EIMSApp extends JFrame {
   private void startApp() {
     System.out.println("INVOKED!");
     EventQueue.invokeLater(new Runnable() {
+      @Override
       public void run() {
-        frame = new AppFrame();
-        welcome();
+        frame = new AppFrame2(sysAdmin, account);
       }
     });
-  }
-
-  public void welcome() {
-    JPanel welcomePanel = new JPanel();
-    JButton confirmButton = new JButton("Login");
-    welcomePanel.add(confirmButton);
-    frame.swapCenterPanel(frame, frame.subPanel, welcomePanel);
-    
-    confirmButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        frame.swapCenterPanel(frame, welcomePanel, userPass());
-      }
-    });
-    
-//    return welcomePanel;
-  }
-  
-  public JPanel userPass() {
-    int column_width = 15;
-    JPanel userPanel = new JPanel();
-    JLabel userLabel = new JLabel("Username: ");
-    userLabel.setDisplayedMnemonic(KeyEvent.VK_U);
-    JTextField userTextField = new JTextField(null, null, column_width);
-    userLabel.setLabelFor(userTextField);
-    userPanel.add(userLabel);
-    userPanel.add(userTextField);
-
-    JPanel passPanel = new JPanel();
-    JLabel passLabel = new JLabel("Password: ");
-    passLabel.setDisplayedMnemonic(KeyEvent.VK_P);
-    JPasswordField passTextField = new JPasswordField(null, null, column_width);
-    passLabel.setLabelFor(passTextField);
-    passPanel.add(passLabel);
-    passPanel.add(passTextField);
-    
-    JButton confirmButton = new JButton("OK");
-    
-    
-    JPanel panel = new JPanel();
-    
-    panel.add(userPanel);
-    panel.add(passPanel);
-    panel.add(confirmButton);
-    
-    confirmButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        char[] password = passTextField.getPassword();
-        account.setUsername(userTextField.getText());
-        account.setPassword(new String(password));
-        try {
-          boolean loginCheck = 
-                  sysAdmin.login(account.getUsername(), account.getPassword());
-          System.out.println(loginCheck);
-          if (loginCheck == true) {
-            frame.swapCenterPanel(frame, frame.subPanel, listPanel(false));
-          } else {
-            // clear the text fields and flash warning
-            userTextField.setText("");
-            passTextField.setText("");
-          }
-        } catch (IOException ef) {
-          ef.printStackTrace();
-        }
-        dispose();
-        panel.remove(confirmButton);
-      }
-    });
-
-    return panel;
   }
 
   public JPanel listPanel(boolean checkPensioner) {
@@ -117,9 +48,6 @@ public class EIMSApp extends JFrame {
             + "Location"
     );
     list.add(header);
-    
-    JButton listAllButton = new JButton("List All Entries");
-    JButton listPensionerButton = new JButton("List Pensioners");
     
     Employee[] employees = this.db.getDatabase();
     
@@ -150,22 +78,22 @@ public class EIMSApp extends JFrame {
     }
     
     if (checkPensioner == true) {
-      listAllButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-         frame.swapCenterPanel(frame, frame.subPanel, listPanel(false));
-         list.remove(listAllButton);
-        }
-      });
-      list.add(listAllButton);
+//      listAllButton.addActionListener(new ActionListener() {
+//        public void actionPerformed(ActionEvent e) {
+//         frame.swapCenterPanel(frame, frame.subPanel, listPanel(false));
+//         list.remove(listAllButton);
+//        }
+//      });
+//      list.add(listAllButton);
     } 
     else {
-      listPensionerButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-         frame.swapCenterPanel(frame, frame.subPanel, listPanel(true));
-         list.remove(listPensionerButton);
-        }
-      });
-      list.add(listPensionerButton);
+//      listPensionerButton.addActionListener(new ActionListener() {
+//        public void actionPerformed(ActionEvent e) {
+//         frame.swapCenterPanel(frame, frame.subPanel, listPanel(true));
+//         list.remove(listPensionerButton);
+//        }
+//      });
+//      list.add(listPensionerButton);
     }
     
     
@@ -174,4 +102,29 @@ public class EIMSApp extends JFrame {
   }
   
 
+  
+//  confirmButton.addActionListener(new ActionListener() {
+//      public void actionPerformed(ActionEvent e) {
+//        char[] password = passTextField.getPassword();
+//        account.setUsername(userTextField.getText());
+//        account.setPassword(new String(password));
+//        try {
+//          boolean loginCheck = 
+//                  sysAdmin.login(account.getUsername(), account.getPassword());
+//          System.out.println(loginCheck);
+//          if (loginCheck == true) {
+//            frame.swapCenterPanel(frame, frame.subPanel, listPanel(false));
+//          } else {
+//            // clear the text fields and flash warning
+//            userTextField.setText("");
+//            passTextField.setText("");
+//          }
+//        } catch (IOException ef) {
+//          ef.printStackTrace();
+//        }
+//        dispose();
+//        panel.remove(confirmButton);
+//      }
+//    });
+  
 }

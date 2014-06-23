@@ -19,9 +19,18 @@ public class SysAdmin {
 
   public boolean login(String user, String pword) throws IOException {
 	boolean approved = false;
-
+    
+    if (
+            user == null || 
+            pword == null || 
+            user.trim().equals("") || 
+            pword.trim().equals("")) 
+    {
+      return false;
+    }
 	getLoginList();
 	sortLoginList();
+    
 
 	/*System.out.println("\nHere is the Post Sorted logins only array:");
 	 for(int z=0; z<numberOfAccts; z++){
@@ -32,7 +41,7 @@ public class SysAdmin {
 	 for(int z=0; z<numberOfAccts; z++){
 	 System.out.println(pwordsOnly[z]);
 	 }*/
-	approved = checkUser(user, pword);
+	approved = checkUser(user, pword);   
 	//System.out.println("Account is " + approved);	
 	return approved;
   }
