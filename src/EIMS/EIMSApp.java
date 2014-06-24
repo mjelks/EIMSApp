@@ -29,77 +29,12 @@ public class EIMSApp extends JFrame {
     EventQueue.invokeLater(new Runnable() {
       @Override
       public void run() {
-        frame = new AppFrame2(sysAdmin, account);
+        frame = new AppFrame2(sysAdmin, account, db);
       }
     });
   }
 
-  public JPanel listPanel(boolean checkPensioner) {
-    
-    JPanel list = new JPanel();
-    //System.out.println(this.db.getDatabase());
-    JLabel header = new JLabel(
-            "EmpID,"
-            + "First Name, "
-            + "Last Name, "
-            + "Salary, "
-            + "Department, "
-            + "Years of Work, "
-            + "Location"
-    );
-    list.add(header);
-    
-    Employee[] employees = this.db.getDatabase();
-    
-    
-    for (int i=0; i<employees.length; i++) {
-      if (employees[i] != null) {
-        JPanel line = new JPanel();
-        String info = "";
-        Employee e = employees[i];
-        String empID = Integer.toString(e.getEmpId());
-        String salary = Double.toString(e.getSalary());
-        String pension = Integer.toString(e.getPension());
-    
-        info = empID + ", " + 
-                e.getFirstname() + ", " + 
-                e.getLastname() +  ", " + 
-                salary + ", " + 
-                e.getDepartment() +  ", " + 
-                pension +  ", " + 
-                e.getLocation() + "\n";
-        if ((checkPensioner == false) || 
-                (checkPensioner == true && e.isPensioner() == true)) {
-          JLabel userData = new JLabel(info);
-          line.add(userData);
-          list.add(line);
-        }
-      }
-    }
-    
-    if (checkPensioner == true) {
-//      listAllButton.addActionListener(new ActionListener() {
-//        public void actionPerformed(ActionEvent e) {
-//         frame.swapCenterPanel(frame, frame.subPanel, listPanel(false));
-//         list.remove(listAllButton);
-//        }
-//      });
-//      list.add(listAllButton);
-    } 
-    else {
-//      listPensionerButton.addActionListener(new ActionListener() {
-//        public void actionPerformed(ActionEvent e) {
-//         frame.swapCenterPanel(frame, frame.subPanel, listPanel(true));
-//         list.remove(listPensionerButton);
-//        }
-//      });
-//      list.add(listPensionerButton);
-    }
-    
-    
-    
-    return list;
-  }
+  
   
 
   
