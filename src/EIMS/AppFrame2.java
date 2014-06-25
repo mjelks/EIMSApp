@@ -77,7 +77,7 @@ public class AppFrame2 {
   }
 
   private JPanel firstTabButtons() {
-        //creating a border to highlight the JPanel areas
+    //creating a border to highlight the JPanel areas
     //Border outline = BorderFactory.createLineBorder(Color.black);
 
     JPanel tabsPanel = new JPanel();
@@ -97,7 +97,7 @@ public class AppFrame2 {
           if (loginCheck == true) {
             cardPanel.add(listPanel(false), "list_all");
             cards.show(cardPanel, "list_all");
-                  //cards.show(cardPanel, "Menu");
+            //cards.show(cardPanel, "Menu");
             // swap bottom buttons
             swapPanel(guiFrame, tabsPanel, secondTabButtons());
           } else {
@@ -206,11 +206,20 @@ public class AppFrame2 {
     deleteUserButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent event) {
-        //JPanel listAllCard = new JPanel();
-        cardPanel.add(deletePanel(), "delete_u");
-        cards.show(cardPanel, "delete_u");
+        if (db.getEmployeeCount() > 0) {
+          //JPanel listAllCard = new JPanel();
+          cardPanel.add(deletePanel(), "delete_u");
+          cards.show(cardPanel, "delete_u");
 
-        //swapPanel(guiFrame, tabsPanel, firstTabButtons());
+          //swapPanel(guiFrame, tabsPanel, firstTabButtons()); 
+        } else {
+          JOptionPane.showMessageDialog(
+                  null,
+                  "You have already deleted all items from the list",
+                  "Employee Search",
+                  JOptionPane.PLAIN_MESSAGE
+          );
+        }
       }
     });
 
@@ -240,20 +249,29 @@ public class AppFrame2 {
     searchUser.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent event) {
-        String message;
-        String id = searchTextField.getText();
-        Employee emp = db.query(Integer.parseInt(id));
-        if (emp != null) {
-          message = "I FOUND employee with id : " + id + " " + emp.getFirstname() + " " + emp.getLastname();
+        if (searchTextField.getText().equals("")) {
+          JOptionPane.showMessageDialog(
+                  null,
+                  "Field can't be blank",
+                  "Employee Search",
+                  JOptionPane.PLAIN_MESSAGE
+          );
         } else {
-          message = "I was not able an employee with id: " + id;
+          String message;
+          String id = searchTextField.getText();
+          Employee emp = db.query(Integer.parseInt(id));
+          if (emp != null) {
+            message = "I FOUND employee with id : " + id + " " + emp.getFirstname() + " " + emp.getLastname();
+          } else {
+            message = "I was not able an employee with id: " + id;
+          }
+          JOptionPane.showMessageDialog(
+                  null,
+                  message,
+                  "Employee Search",
+                  JOptionPane.PLAIN_MESSAGE
+          );
         }
-        JOptionPane.showMessageDialog(
-                null,
-                message,
-                "Employee Search",
-                JOptionPane.PLAIN_MESSAGE
-        );
       }
     });
     userSearch.add(searchUser);
@@ -281,10 +299,30 @@ public class AppFrame2 {
     deleteUser.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent event) {
-        db.delete(Integer.parseInt(deleteTextField.getText()));
-        cardPanel.add(listPanel(false), "list_all");
-        cards.show(cardPanel, "list_all");
+        System.out.println(deleteTextField.getText());
+        if (deleteTextField.getText().equals("")) {
+          JOptionPane.showMessageDialog(
+                  null,
+                  "Field can't be blank",
+                  "Employee Delete",
+                  JOptionPane.PLAIN_MESSAGE
+          );
+        } else {
+          boolean result = db.delete(Integer.parseInt(deleteTextField.getText()));
+          if (result == true) {
+            cardPanel.add(listPanel(false), "list_all");
+            cards.show(cardPanel, "list_all");
+          } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "There is no Employee with that ID",
+                    "Employee Search",
+                    JOptionPane.PLAIN_MESSAGE
+            );
+          }
+        }
       }
+
     });
     userDelete.add(deleteUser);
 
@@ -353,7 +391,7 @@ public class AppFrame2 {
     addUser.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent event) {
-        db.addEmployee(
+        boolean result = db.addEmployee(
                 userTextField.getText(),
                 lastTextField.getText(),
                 Integer.parseInt(empTextField.getText()),
@@ -362,8 +400,17 @@ public class AppFrame2 {
                 Integer.parseInt(yearTextField.getText()),
                 workTextField.getText()
         );
-        cardPanel.add(listPanel(false), "list_all");
-        cards.show(cardPanel, "list_all");
+        if (result == true) {
+          cardPanel.add(listPanel(false), "list_all");
+          cards.show(cardPanel, "list_all");
+        } else {
+          JOptionPane.showMessageDialog(
+                  null,
+                  "There is already an Employee with that ID",
+                  "Employee Search",
+                  JOptionPane.PLAIN_MESSAGE
+          );
+        }
       }
     });
     userAdd.add(addUser);
@@ -380,7 +427,7 @@ public class AppFrame2 {
     return panel;
   }
 
-    //All the buttons are following the same pattern
+  //All the buttons are following the same pattern
   //so create them all in one place.
   private void addButton(Container parent, String name) {
     JButton but = new JButton(name);

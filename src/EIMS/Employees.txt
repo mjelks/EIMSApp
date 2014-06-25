@@ -1,16 +1,2 @@
-Eight;Smith;438;59999;IT;3;Cupertino
-Ten;Eastwood;4410;69999;HR;7;Santa Clara
-Five;Nguyen;355;35000;CS;5;Mountain View
-Six;Holidays;366;35666;HR;1;San Jose
-Sixteen;Pham;5300;44444.44;IT;1;Santa Cruz
-Twelve;Ngo;5100;35000;HR;2;Sunnyvale
-One;Hason;211;23456;IT;9;Sunnyvale
-Fourteen;Harrison;5200;48345;IT;4;San Jose
-Two;Smith;212;56789;IT;4;Cupertino
-Nine;Eastwood;449;23456;CS;6;Los Gatos
-Three;Harrison;223;39812;IT;5;Redwood city
-Seven;Myland;417;44444;BS;12;Sunnyvale
-Four;Star;334;77234;IT;8;Santa Clara
-Eleven;Willis;5000;45000;IT;20;Los Angeles
 Thirteen;Mimi;5101;65000;SW;5;Redwood City
 Fifteen;Jordan;5201;99999.99;CS;7;Los Gatos

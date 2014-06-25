@@ -112,7 +112,7 @@ public class EmployeeDatabase {
 		boolean deletesuccess = false;				
 		if(delIndex != -1){ // if database is empty, or if the employee ID is invalid,
 							//  will not enter for loop.		
-			for(int i = delIndex; i < CURRENT_EMPLOYEE_COUNT-1; i++){
+			for(int i = delIndex; i < CURRENT_EMPLOYEE_COUNT; i++){
 				database[i] = database[i+1];
 			}
 			CURRENT_EMPLOYEE_COUNT--;
@@ -160,11 +160,15 @@ public class EmployeeDatabase {
 	}
 	
 	public Employee query (int employeeID){
-		int index =  binarySearch(getIDs() , 0, CURRENT_EMPLOYEE_COUNT-1, employeeID);
+		int index =  binarySearch(getIDs() , 0, CURRENT_EMPLOYEE_COUNT, employeeID);
 		if(index == -1){	// if there is no array, or if the entered ID is invalid, it will return null.
 			return null;
 		}
 		
 		return database[index];
 	}
+    
+    public int getEmployeeCount() {
+      return CURRENT_EMPLOYEE_COUNT;
+    }
 }
